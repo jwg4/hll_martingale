@@ -21,3 +21,18 @@ class HyperLogLog(object):
     def add_objects(self, l):
         for x in l:
             self.add_object(x)
+
+class MartingaleHyperLogLog(HyperLogLog):
+    count = 0
+
+    def add_object(self, x):
+        self.count = self.count + self.get_count()
+        super(MartingaleHyperLogLog, self).add_object(x)
+    
+    def get_count(self):
+        p = 0
+        for i in self.logs:
+            p = p + 2**(0-i)
+        p = p / (2**self.n)
+        return 1 / p
+
