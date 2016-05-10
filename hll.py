@@ -24,7 +24,10 @@ class HyperLogLog(object):
 
     @property
     def unadjusted_count(self):
-        return 1
+        sum = 0
+        for x in self.logs:
+            sum = sum + 2**(0-x)
+        return 2**(self.k) / sum
 
 class MartingaleHyperLogLog(HyperLogLog):
     count = 0

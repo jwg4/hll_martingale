@@ -14,7 +14,7 @@ class TestHyperLogLog(unittest.TestCase):
 
     def test_counts_a_single_element_correctly(self):
         self.hll1.add_object(37)
-        self.assertEqual(self.hll1.unadjusted_count, 1)
+        self.assertAlmostEqual(self.hll1.unadjusted_count, 1, delta=0.0001)
 
 class TestMartingaleHyperLogLog(unittest.TestCase):
     def setUp(self):
