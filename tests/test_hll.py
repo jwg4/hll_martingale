@@ -12,6 +12,10 @@ class TestHyperLogLog(unittest.TestCase):
         self.hll2.add_objects([ 37 for x in range(0, 1000) ])
         self.assertEqual(self.hll1.logs, self.hll2.logs)
 
+    def test_counts_a_single_element_correctly(self):
+        self.hll1.add_object(37)
+        self.assertEqual(self.hll1.unadjusted_count, 1)
+
 class TestMartingaleHyperLogLog(unittest.TestCase):
     def setUp(self):
         self.hll = MartingaleHyperLogLog(16, 16)

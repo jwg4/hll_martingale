@@ -22,6 +22,10 @@ class HyperLogLog(object):
         for x in l:
             self.add_object(x)
 
+    @property
+    def unadjusted_count(self):
+        return 1
+
 class MartingaleHyperLogLog(HyperLogLog):
     count = 0
 
