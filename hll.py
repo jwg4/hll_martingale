@@ -35,8 +35,9 @@ class MartingaleHyperLogLog(HyperLogLog):
     count = 0
 
     def add_object(self, x):
-        self.count = self.count + self.get_count()
-        super(MartingaleHyperLogLog, self).add_object(x)
+        count = self.get_count()
+        if super(MartingaleHyperLogLog, self).add_object(x):
+            self.count = self.count + count
     
     def get_count(self):
         p = 0
