@@ -10,4 +10,4 @@ for l in f.readlines():
     mhll.add_object(i)
 
 print hll.unadjusted_count
-print mhll.get_count()
+print mhll.count
