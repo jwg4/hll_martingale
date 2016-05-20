@@ -17,6 +17,8 @@ class HyperLogLog(object):
         nx = self.strength(h)
         if nx > self.logs[r]:
             self.logs[r] = nx
+            return True
+        return False
 
     def add_objects(self, l):
         for x in l:
