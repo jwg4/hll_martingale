@@ -1,4 +1,8 @@
+import logging
+
 from hll import HyperLogLog, MartingaleHyperLogLog
+
+logging.basicConfig(level=logging.DEBUG)
 
 hll = HyperLogLog(10, 54)
 mhll = MartingaleHyperLogLog(10, 54)

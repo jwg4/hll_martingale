@@ -1,3 +1,6 @@
+import logging
+
+
 class HyperLogLog(object):
     def __init__(self, n, k):
         self.n = n
@@ -44,5 +47,6 @@ class MartingaleHyperLogLog(HyperLogLog):
         for i in self.logs:
             p = p + 2**(0-i)
         p = p / (2**self.n)
+        logging.debug("%f, %f" % (p, 1/p))
         return 1 / p
 
