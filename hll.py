@@ -32,7 +32,7 @@ class HyperLogLog(object):
         sum = 0
         for x in self.logs:
             sum = sum + 2**(0-x)
-        return 2**(self.k) / sum
+        return 2**(self.k) / sum - 1
 
 class MartingaleHyperLogLog(HyperLogLog):
     count = 0
