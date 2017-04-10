@@ -11,7 +11,7 @@ class BasicHLLTests(object):
         self.assertAlmostEqual(self.hll.unadjusted_count, 0, delta=0.0001)
 
 
-class TestHyperLogLog(unittest.TestCasei, BasicHLLTests):
+class TestHyperLogLog(unittest.TestCase, BasicHLLTests):
     def setUp(self):
         self.hll = HyperLogLog(16, 16)
         self.hll2 = HyperLogLog(16, 16)
