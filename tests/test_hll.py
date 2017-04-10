@@ -2,24 +2,25 @@ import unittest
 
 from hll import HyperLogLog, MartingaleHyperLogLog
 
-class TestHyperLogLog(unittest.TestCase):
+class BasicHLLTests(object):
+    def test_counts_a_single_element_correctly(self):
+        self.hll.add_object(37)
+        self.assertAlmostEqual(self.hll.unadjusted_count, 1, delta=0.0001)
+
+    def test_counts_zero_elements_correctly(self):
+        self.assertAlmostEqual(self.hll.unadjusted_count, 0, delta=0.0001)
+
+
+class TestHyperLogLog(unittest.TestCasei, BasicHLLTests):
     def setUp(self):
-        self.hll1 = HyperLogLog(16, 16)
+        self.hll = HyperLogLog(16, 16)
         self.hll2 = HyperLogLog(16, 16)
 
     def test_a_repeated_element_is_ignored(self):
-        self.hll1.add_object(37)
+        self.hll.add_object(37)
         self.hll2.add_objects([ 37 for x in range(0, 1000) ])
-        self.assertEqual(self.hll1.logs, self.hll2.logs)
+        self.assertEqual(self.hll.logs, self.hll2.logs)
 
-    def test_counts_a_single_element_correctly(self):
-        self.hll1.add_object(37)
-        self.assertAlmostEqual(self.hll1.unadjusted_count, 1, delta=0.0001)
-
-class TestMartingaleHyperLogLog(unittest.TestCase):
+class TestMartingaleHyperLogLog(unittest.TestCase, BasicHLLTests):
     def setUp(self):
         self.hll = MartingaleHyperLogLog(16, 16)
-
-    def test_counts_a_single_element_correctly(self):
-        self.hll.add_object(37)
-        self.assertEqual(self.hll.count, 1)
