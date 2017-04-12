@@ -7,6 +7,11 @@ class BasicHLLTests(object):
         self.hll.add_object(37)
         self.assertAlmostEqual(self.hll.count, 1, delta=0.0001)
 
+    def test_counts_an_odd_and_even_element_correctly(self):
+        self.hll.add_object(37)
+        self.hll.add_object(38)
+        self.assertAlmostEqual(self.hll.count, 2, delta=0.0001)
+
     def test_counts_zero_elements_correctly(self):
         self.assertAlmostEqual(self.hll.count, 0, delta=0.0001)
 
