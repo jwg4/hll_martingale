@@ -28,7 +28,7 @@ class HyperLogLog(object):
             self.add_object(x)
 
     @property
-    def unadjusted_count(self):
+    def count(self):
         sum = 0
         for x in self.logs:
             sum = sum + 2**(0-x)
