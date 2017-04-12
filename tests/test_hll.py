@@ -5,10 +5,10 @@ from hll import HyperLogLog, MartingaleHyperLogLog
 class BasicHLLTests(object):
     def test_counts_a_single_element_correctly(self):
         self.hll.add_object(37)
-        self.assertAlmostEqual(self.hll.unadjusted_count, 1, delta=0.0001)
+        self.assertAlmostEqual(self.hll.count, 1, delta=0.0001)
 
     def test_counts_zero_elements_correctly(self):
-        self.assertAlmostEqual(self.hll.unadjusted_count, 0, delta=0.0001)
+        self.assertAlmostEqual(self.hll.count, 0, delta=0.0001)
 
 
 class TestHyperLogLog(unittest.TestCase, BasicHLLTests):
